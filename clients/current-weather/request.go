@@ -39,7 +39,12 @@ func (c *currentWeatherClient) GetCurrentWeather(lat, lon string) (models.OpenWe
 		log.Printf("Current weather client: Error making request: %v", err)
 		return models.OpenWeatherCurrentWeatherResponse{}, err
 	}
-	defer response.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			log.Printf("Current weather client: Error closing response body: %v", err)
+		}
+	}(response.Body)
 	var weatherResponse models.OpenWeatherCurrentWeatherResponse
 
 	switch response.StatusCode {

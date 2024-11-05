@@ -12,7 +12,7 @@ type currentWeatherClient struct {
 	client  http.Client
 }
 
-func NewCurrentWeatherClient(baseUri string) (currentWeatherClient, error) {
+func NewCurrentWeatherClient() (currentWeatherClient, error) {
 	rawUri, ok := os.LookupEnv("URI_OPEN_WEATHER_CURRENT")
 	if !ok {
 		err := errors.New("cannot find URI_OPEN_WEATHER_CURRENT environment variable")
