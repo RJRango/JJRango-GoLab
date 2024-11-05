@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/RJRango/JJRango-GoPath/microservice/microservice"
+	"github.com/RJRango/JJRango-GoPath/microservice"
 	"log"
 	"os"
 )
